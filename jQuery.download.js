@@ -25,3 +25,18 @@ jQuery.download = function(url, data, method){
 		.appendTo('body').submit().remove();
 	};
 };
+
+// by @lastmind4
+jQuery.download_with_param_map = function(url, param_map, method){
+	//url and data options required
+	if( url && param_map ){ 
+		//split params into form inputs
+		var inputs = '';
+		jQuery.each(param_map, function(key, value){ 
+			inputs+='<input type="hidden" name="'+ key +'" value="'+ value +'" />'; 
+		});
+		//send request
+		jQuery('<form action="'+ url +'" method="'+ (method||'post') +'">'+inputs+'</form>')
+		.appendTo('body').submit().remove();
+	};
+};
